@@ -1,6 +1,16 @@
 pipeline {
     agent any
-    stages {        
+    stages {
+        stage('calculate diffs') {
+            steps {
+                echo "calculate diffs"
+            }
+        }
+        stage('manifest creation') {
+            steps {
+                echo "manifest creation"
+            }
+        }    
         stage('Validate CF Templates') {
             steps {
                 script {
@@ -20,15 +30,21 @@ pipeline {
                 }
             }
         }
-        stage('cfn-nag cfn templates') {
-            when {
-                expression {
-                    return env.skipSteps
-                }
-            }            
+        stage('Lint CF Templates') {         
             steps {
                 // Run your build and test commands here
                 echo "cfn-nag the templates"
+            }
+        }        
+        stage('push to artifactory') {         
+            steps {
+                // Run your build and test commands here
+                echo "push to artifactory"
+            }
+        }
+        stage('push to staging bucket') {
+            steps {
+                echo "push to staging bucket"
             }
         }        
     }
