@@ -6,6 +6,7 @@ pipeline {
 
                 // get the latest release 
                 sh 'pwd'
+                sh 'git rev-list --tags --max-count=1'
                 sh 'git describe --tags `git rev-list --tags --max-count=1`'
                 echo "calculate diffs"
             }
