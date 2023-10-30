@@ -22,7 +22,7 @@ jobs:
         builder: 'gcr.io/paketo-buildpacks/builder:base'
         env: 'TEST=TEST'
 
-    - name: Run Trivy vulnerability scanner
+    - name: Scan Image
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: 'test-app:${{github.sha}}'
