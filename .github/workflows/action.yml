@@ -21,6 +21,16 @@ jobs:
         path: 'src/'
         builder: 'gcr.io/paketo-buildpacks/builder:base'
         env: 'TEST=TEST'
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'test-app:1.0.0'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'        
               
   deploy:
     runs-on: ubuntu-latest
