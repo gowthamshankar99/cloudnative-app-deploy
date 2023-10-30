@@ -17,7 +17,7 @@ jobs:
       uses: mamezou-tech/buildpacks-action@master
       with:
         image: 'test-app'
-        tag: ${{ github.sha }}
+        tag: '${{ github.sha }}'
         path: 'src/'
         builder: 'gcr.io/paketo-buildpacks/builder:base'
         env: 'TEST=TEST'
