@@ -13,6 +13,11 @@ jobs:
     - name: Say Hello
       run: echo "Hello, World!"
 
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@v3.1.1
+      with:
+        cosign-release: main      
+
     - name: Build image
       uses: mamezou-tech/buildpacks-action@master
       with:
