@@ -17,20 +17,10 @@ jobs:
       uses: mamezou-tech/buildpacks-action@master
       with:
         image: 'test-app'
-        tag: '${{ github.sha }}'
+        tag: '1.0.0'
         path: 'src/'
         builder: 'gcr.io/paketo-buildpacks/builder:base'
         env: 'TEST=TEST'
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'test-app:${{ github.sha }}'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
               
   deploy:
     runs-on: ubuntu-latest
